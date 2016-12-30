@@ -1,0 +1,3 @@
+Local Correctly Predicted: 8559
+Global Correctly Predicted: 9266
+Tournament Correctly Predicted: 9978
