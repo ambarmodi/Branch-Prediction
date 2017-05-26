@@ -1,13 +1,15 @@
 # Branch Predictor
 
-# Description:
+## Description:
 The project is the implementation of Tournament Branch Prediction, also known as "Hybrid Predictor". 
 Please read the Wikipedia article https://en.wikipedia.org/wiki/Branch_prediction for more details. 
 This predictor parses the input file, perform processing and produce the output. 
 For simplicity all the non-Branch instructions have been removed and the branch addresses have been renumbered from 0 to 9.
 
-# Detailed Working:
-Step 1: Parse the input file. The input file is in the following format:
+### Detailed Working:
+
+#### Step 1: Parse the input file. 
+The input file is in the following format:
 0n1
 1t7
 7n8
@@ -18,7 +20,7 @@ On each line:
 2. The second character is ‘n’ if the branch was not resolved to be taken or ‘t’ if the branch was resolved to be taken. This field indicates the true (non-speculative) direction of the branch.
 3. The third character is the address of the next instruction executed (the target if taken, thefall-through address otherwise).
 
-Step 2: Predict branches. 
+#### Step 2: Predict branches. 
 This is to be a tournament predictor, which is comprised of four parts.
   Part A is a local predictor: An array of 2-bit saturating counters, indexed by the instruction address. All counters initialize to zero.
   Part B is a global predictor: An array of 2-bit saturating counters, indexed by the sequence of six resolved branch that occurred in time just prior to the branch being predicted. (This predictor considers only global history, not the PC of the branch.) All counters initialize to zero, and the running branch history initializes to six not-taken branches.
@@ -36,7 +38,8 @@ For the selector:
   If the local predictor is correct and the global predictor is incorrect, decrement the counter.
   If the local predictor is incorrect and the global predictor is correct, increment the counter.
 
-Step 3: Output your results. The output file shall be in the following format. Note that what is shown here is the actual expected output for the first five executed branches.
+#### Step 3: Output your results. 
+The output file shall be in the following format. Note that what is shown here is the actual expected output for the first five executed branches.
 0nnlnn
 1nnlnt
 7nnlnn
