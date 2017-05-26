@@ -1,4 +1,4 @@
-## Branch Predictor
+# Branch Predictor
 
 # Description:
 The project is the implementation of Tournament Branch Prediction, also known as "Hybrid Predictor". 
