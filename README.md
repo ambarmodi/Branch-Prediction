@@ -54,7 +54,7 @@ On each line:
 •The sixth character is the actual direction of the branch: ‘t’ if taken, ‘n’ if not taken.
 
 
-# Files:
+### Files:
 1. makefile
 2. TournamentBP.java
 3. Predictor.java
@@ -62,12 +62,12 @@ On each line:
 5. statistics.txt
 6. sample_branch_sequence
 
-# Instructions to execute:
+## Instructions to execute:
 1. make 						       (This will compile the program)
 2. java TournamentBP <input_file> <output_file>  	(This will generate output_file and statistics.txt)
 3. make clean 						(Optional : This will clean compiled .class files)
 
-Output of the program:
+### Output of the program:
 1. <output_file>
 2. statistics.txt
 
