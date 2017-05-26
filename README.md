@@ -22,18 +22,20 @@ On each line:
 
 #### Step 2: Predict branches. 
 This is to be a tournament predictor, which is comprised of four parts.
-  Part A is a local predictor: An array of 2-bit saturating counters, indexed by the instruction address. All counters initialize to zero.
-  Part B is a global predictor: An array of 2-bit saturating counters, indexed by the sequence of six resolved branch that occurred in time just prior to the branch being predicted. (This predictor considers only global history, not the PC of the branch.) All counters initialize to zero, and the running branch history initializes to six not-taken branches.
-  Part C is a selector: An array of 2-bit saturating counters, indexed by the instruction address, used to select between the local and global predictors when making a final prediction. All counters initialize to zero.
+  1. Part A is a local predictor: An array of 2-bit saturating counters, indexed by the instruction address. All counters initialize to zero.
+  2. Part B is a global predictor: An array of 2-bit saturating counters, indexed by the sequence of six resolved branch that occurred in time just prior to the branch being predicted. (This predictor considers only global history, not the PC of the branch.) All counters initialize to zero, and the running branch history initializes to six not-taken branches.
+  3. Part C is a selector: An array of 2-bit saturating counters, indexed by the instruction address, used to select between the local and global predictors when making a final prediction. All counters initialize to zero.
   Part D is the tournament selection: Use the selector to choose between the local and global predictors to get the final prediction.
-You will compare each of your predictions to the corresponding branch resolution. After making each prediction, counters from each of your three predictors must be updated to learn from the newly resolved branch. Your program should keep track of the number of correctly predicted branches for the local predictor, the global predictor, and the tournament predictor.
-Note: Your tournament predictor will not be 100% accurate. The assignment is not to correctly predict every branch but instead to match the behavior of the tournament predictor specified above.
+  
+It compare each of the predictions to the corresponding branch resolution. After making each prediction, counters from each of the three predictors are updated to learn from the newly resolved branch. 
+
+Program keep track of the number of correctly predicted branches for the local predictor, the global predictor, and the tournament predictor.
 
 Updating counters:
 Based on the true outcome of each branch, updates to counters are as follows:
-•For the local and global predictors:
-If the branch was taken, increment the saturating counter. If the branch was not taken, decrement the counter.
-For the selector:
+1. For the local and global predictors:
+ If the branch was taken, increment the saturating counter. If the branch was not taken, decrement the counter.
+2. For the selector:
   If the local and global predictors agree (right or wrong), do not modify the counter.
   If the local predictor is correct and the global predictor is incorrect, decrement the counter.
   If the local predictor is incorrect and the global predictor is correct, increment the counter.
